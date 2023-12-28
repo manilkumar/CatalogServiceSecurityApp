@@ -10,6 +10,7 @@ using HRApplication.Helpers;
 using Microsoft.OpenApi.Models;
 using HRApplication.Filters;
 using CatalogServiceSecurityApp.Services;
+using CatalogServiceSecurityApp.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -115,6 +116,11 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseCors();
+
+app.MapWhen(context => context.Request.Path.StartsWithSegments("/cartingservice"), appBuilder =>
+{
+    appBuilder.UseMiddleware<IdentityAccessTokenLoggingMiddleware>();
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

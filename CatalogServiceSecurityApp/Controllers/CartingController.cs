@@ -1,21 +1,19 @@
-﻿namespace HRApplication.Controllers
+﻿using CatalogServiceSecurityApp.Models.DbModels;
+using CatalogServiceSecurityApp.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace CatalogServiceSecurityApp.Controllers
 {
-    using CatalogServiceSecurityApp.Models.DbModels;
-    using CatalogServiceSecurityApp.Services;
-    using HRApplication.Models.DbModels;
-    using HRApplication.Models.InputModels;
-    using HRApplication.Services;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
-    [Route("[controller]")]
-    public class CatalogController : Controller
+    [Route("cartingservice")]
+    public class CartingController : Controller
     {
         private readonly ILogger logger;
         private readonly CategoryService categoryService;
 
-        public CatalogController(ILogger logger, CategoryService categoryService)
+        public CartingController(ILogger logger, CategoryService categoryService)
         {
             this.categoryService = categoryService;
             this.logger = logger;
@@ -37,7 +35,7 @@
             }
         }
 
-        [Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Buyer,Manager")]
         [HttpPost]
         public ActionResult Create([FromBody] Category category)
         {
@@ -53,7 +51,7 @@
             }
         }
 
-        [Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Buyer,Manager")]
         [HttpPut]
         public ActionResult Update([FromBody] Category category)
         {
@@ -69,7 +67,7 @@
             }
         }
 
-        [Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Buyer,Manager")]
         [HttpDelete]
         public ActionResult Delete(int categoryId)
         {
