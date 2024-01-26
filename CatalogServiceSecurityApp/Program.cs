@@ -1,14 +1,14 @@
 using Microsoft.EntityFrameworkCore;
-using HRApplication.Data;
+using CatalogServiceSecurityApp.Data;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using HRApplication.Services;
-using HRApplication.Helpers;
+using CatalogServiceSecurityApp.Services;
+using CatalogServiceSecurityApp.Helpers;
 using Microsoft.OpenApi.Models;
-using HRApplication.Filters;
+using CatalogServiceSecurityApp.Filters;
 using CatalogServiceSecurityApp.Services;
 using CatalogServiceSecurityApp.Middlewares;
 

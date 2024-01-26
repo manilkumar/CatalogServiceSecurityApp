@@ -1,4 +1,4 @@
-﻿namespace HRApplication.Models.InputModels
+﻿namespace CatalogServiceSecurityApp.Models.InputModels
 {
     using System.ComponentModel.DataAnnotations;
 

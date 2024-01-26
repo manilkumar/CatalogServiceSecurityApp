@@ -1,5 +1,5 @@
 ﻿using CatalogServiceSecurityApp.Models.DbModels;
-using HRApplication.Data;
+using CatalogServiceSecurityApp.Data;
 
 namespace CatalogServiceSecurityApp.Services
 {

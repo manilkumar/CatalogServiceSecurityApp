@@ -1,7 +1,7 @@
-﻿namespace HRApplication.Data
+﻿namespace CatalogServiceSecurityApp.Data
 {
     using CatalogServiceSecurityApp.Models.DbModels;
-    using HRApplication.Models.DbModels;
+    using CatalogServiceSecurityApp.Models.DbModels;
     using Microsoft.EntityFrameworkCore;
     using System.Reflection.Emit;
 

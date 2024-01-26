@@ -1,10 +1,10 @@
-﻿namespace HRApplication.Controllers
+﻿namespace CatalogServiceSecurityApp.Controllers
 {
     using CatalogServiceSecurityApp.Models.DbModels;
     using CatalogServiceSecurityApp.Services;
-    using HRApplication.Models.DbModels;
-    using HRApplication.Models.InputModels;
-    using HRApplication.Services;
+    using CatalogServiceSecurityApp.Models.DbModels;
+    using CatalogServiceSecurityApp.Models.InputModels;
+    using CatalogServiceSecurityApp.Services;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 

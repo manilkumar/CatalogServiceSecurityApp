@@ -1,4 +1,4 @@
-﻿namespace HRApplication.Models.DbModels
+﻿namespace CatalogServiceSecurityApp.Models.DbModels
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;

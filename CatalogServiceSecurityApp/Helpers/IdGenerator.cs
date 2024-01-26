@@ -1,4 +1,4 @@
-﻿namespace HRApplication.Helpers
+﻿namespace CatalogServiceSecurityApp.Helpers
 {
     public class IdGenerator
     {

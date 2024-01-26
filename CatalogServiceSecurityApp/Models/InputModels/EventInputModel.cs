@@ -1,6 +1,6 @@
-﻿using HRApplication.Models.DbModels;
+﻿using CatalogServiceSecurityApp.Models.DbModels;
 
-namespace HRApplication.Models.InputModels
+namespace CatalogServiceSecurityApp.Models.InputModels
 {
     public class EventInputModel
     {

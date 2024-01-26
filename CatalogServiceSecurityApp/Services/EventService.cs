@@ -1,8 +1,8 @@
-﻿namespace HRApplication.Services
+﻿namespace CatalogServiceSecurityApp.Services
 {
-    using HRApplication.Data;
-    using HRApplication.Helpers;
-    using HRApplication.Models.DbModels;
+    using CatalogServiceSecurityApp.Data;
+    using CatalogServiceSecurityApp.Helpers;
+    using CatalogServiceSecurityApp.Models.DbModels;
     using Microsoft.EntityFrameworkCore;
 
     public class EventService

@@ -1,8 +1,8 @@
-﻿namespace HRApplication.Helpers
+﻿namespace CatalogServiceSecurityApp.Helpers
 {
     using AutoMapper;
-    using HRApplication.Models.DbModels;
-    using HRApplication.Models.InputModels;
+    using CatalogServiceSecurityApp.Models.DbModels;
+    using CatalogServiceSecurityApp.Models.InputModels;
 
     public class MappingProfiles : Profile
     {

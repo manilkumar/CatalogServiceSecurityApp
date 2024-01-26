@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HRApplication.Models.DbModels
+namespace CatalogServiceSecurityApp.Models.DbModels
 {
     public class Event
     {

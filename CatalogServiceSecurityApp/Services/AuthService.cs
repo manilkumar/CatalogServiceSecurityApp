@@ -1,12 +1,12 @@
-﻿namespace HRApplication.Services
+﻿namespace CatalogServiceSecurityApp.Services
 {
-    using HRApplication.Data;
-    using HRApplication.Models.DbModels;
+    using CatalogServiceSecurityApp.Data;
+    using CatalogServiceSecurityApp.Models.DbModels;
     using Microsoft.IdentityModel.Tokens;
     using System.IdentityModel.Tokens.Jwt;
     using System.Security.Claims;
     using System.Text;
-    using HRApplication.Helpers;
+    using CatalogServiceSecurityApp.Helpers;
     using BC = BCrypt.Net.BCrypt;
     using CatalogServiceSecurityApp.Models.DbModels;
     using System.Security.Cryptography;

@@ -2,7 +2,7 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace HRApplication.Filters
+namespace CatalogServiceSecurityApp.Filters
 {
     public class AuthResponsesOperationFilter : IOperationFilter
     {
