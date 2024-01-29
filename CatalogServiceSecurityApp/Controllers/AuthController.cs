@@ -3,7 +3,12 @@ using CatalogServiceSecurityApp.Models.DbModels;
 using CatalogServiceSecurityApp.Models.InputModels;
 using CatalogServiceSecurityApp.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace CatalogServiceSecurityApp.Controllers
 {
@@ -14,12 +19,14 @@ namespace CatalogServiceSecurityApp.Controllers
         private readonly IMapper mapper;
         private readonly ILogger logger;
         private readonly AuthService authService;
+        private readonly IConfiguration configuration;
 
-        public AuthController(ILogger logger, AuthService authService, IMapper mapper)
+        public AuthController(ILogger logger, AuthService authService, IMapper mapper, IConfiguration configuration)
         {
             this.authService = authService;
             this.mapper = mapper;
             this.logger = logger;
+            this.configuration = configuration;
         }
 
         [AllowAnonymous]
@@ -99,6 +106,64 @@ namespace CatalogServiceSecurityApp.Controllers
                 logger.LogError(error.Message);
                 return StatusCode(500);
             }
+        }
+
+        [HttpPost]
+        [Route("refresh-token")]
+        public async Task<IActionResult> RefreshToken(TokenModel tokenModel)
+        {
+            if (tokenModel is null)
+            {
+                return BadRequest("Invalid client request");
+            }
+
+            string? accessToken = tokenModel.AccessToken;
+            string? refreshToken = tokenModel.RefreshToken;
+
+            var principal = GetPrincipalFromExpiredToken(accessToken);
+            if (principal == null)
+            {
+                return BadRequest("Invalid access token or refresh token");
+            }
+
+            string username = principal.Identity.Name;
+
+            var user = authService.GetByUserName(username);
+
+            if (user == null)
+            {
+                return BadRequest("Invalid access token or refresh token");
+            }
+
+            var newAccessToken = authService.GenerateJwtToken(user.Email,user.Role);
+            var newRefreshToken = authService.GenerateRefreshToken();
+
+
+            return new ObjectResult(new
+            {
+                accessToken = newAccessToken,
+                refreshToken = newRefreshToken
+            });
+        }
+
+        private ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token)
+        {
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateAudience = false,
+                ValidateIssuer = false,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.configuration["JWT:Key"])),
+                ValidateLifetime = false
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
+            if (securityToken is not JwtSecurityToken jwtSecurityToken || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+                throw new SecurityTokenException("Invalid token");
+
+            return principal;
+
         }
     }
 }

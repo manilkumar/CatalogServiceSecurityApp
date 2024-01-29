@@ -9,7 +9,6 @@ using CatalogServiceSecurityApp.Services;
 using CatalogServiceSecurityApp.Helpers;
 using Microsoft.OpenApi.Models;
 using CatalogServiceSecurityApp.Filters;
-using CatalogServiceSecurityApp.Services;
 using CatalogServiceSecurityApp.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);

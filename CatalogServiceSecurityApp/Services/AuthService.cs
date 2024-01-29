@@ -8,7 +8,6 @@
     using System.Text;
     using CatalogServiceSecurityApp.Helpers;
     using BC = BCrypt.Net.BCrypt;
-    using CatalogServiceSecurityApp.Models.DbModels;
     using System.Security.Cryptography;
 
     public class AuthService
@@ -43,6 +42,11 @@
         public User GetByEmail(string email)
         {
             return this.dataContext.Users.FirstOrDefault(c => c.Email == email);
+        }
+
+        public User GetByUserName(string userName)
+        {
+            return this.dataContext.Users.FirstOrDefault(c => c.UserName == userName);
         }
 
         public User RegisterUser(User model)
